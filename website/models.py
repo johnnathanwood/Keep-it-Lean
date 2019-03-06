@@ -19,6 +19,16 @@ class Business(models.Model):
         ''' returns a string representation of the model '''
         return self.name
 
+class Status(models.Model):
+    '''
+    This Model defines the attributes of the Status table in the database.
+    '''
+    name = models.CharField(max_length= 50)
+
+    def __str__(self):
+        ''' returns a string representation of the model '''
+        return self.name
+
 # Product Model
 class Product(models.Model):
     '''
@@ -40,12 +50,5 @@ class Product(models.Model):
         return self.title
 
 
-class Status(models.Model):
-    '''
-    This Model defines the attributes of the Status table in the database.
-    '''
-    name = models.CharField(max_length= 50)
 
-    def __str__(self):
-        ''' returns a string representation of the model '''
-        return self.name
+
