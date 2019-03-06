@@ -1,13 +1,16 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 
+from website.models import Product
+
+from website.forms import UserForm
 
 
 def index(request):
-    template_name = 'index.html'
+    template_name = 'website/index.html'
     return render(request, template_name, {})
 
 
@@ -44,7 +47,7 @@ def register(request):
 
     elif request.method == 'GET':
         user_form = UserForm()
-        template_name = 'register.html'
+        template_name = 'website/register.html'
         return render(request, template_name, {'user_form': user_form})
 
 
@@ -77,7 +80,7 @@ def login_user(request):
             return HttpResponse("Invalid login details supplied.")
 
 
-    return render(request, 'login.html', {}, context)
+    return render(request, 'website/login.html', {}, context)
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
@@ -89,33 +92,21 @@ def user_logout(request):
     # in the URL in redirects?????
     return HttpResponseRedirect('/')
 
+def billing_status(request):
+    billing = get_object_or_404(Product, status_id=1)
+    product = Product.objects.filter(status_id=1)
+    template_name = 'website/billing.html'
+    print(product)
+    context = {'billing': billing, 'products': product}
+    return render(request, template_name, context)
 
-def sell_product(request):
-    if request.method == 'GET':
-        product_form = ProductForm()
-        template_name = 'product/create.html'
-        return render(request, template_name, {'product_form': product_form})
-
-    elif request.method == 'POST':
-        form_data = request.POST
-
-        p = Product(
-            seller = request.user,
-            title = form_data['title'],
-            description = form_data['description'],
-            price = form_data['price'],
-            quantity = form_data['quantity'],
-        )
-        p.save()
-        template_name = 'product/success.html'
-        return render(request, template_name, {})
-
-def list_products(request):
-    all_products = Product.objects.all()
-    template_name = 'product/list.html'
-    return render(request, template_name, {'products': all_products})
-
-
+def design_status(request):
+    design = get_object_or_404(Product, status_id=2)
+    product = Product.objects.filter(status_id=2)
+    template_name = 'website/design.html'
+    print(product)
+    context = {'design': design, 'products': product}
+    return render(request, template_name, context)
 
 
 

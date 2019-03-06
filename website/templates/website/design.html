@@ -1,0 +1,11 @@
+{% extends "website/index.html" %}
+
+
+{% block content %}
+
+{% for product in products %}
+
+<p>{{product.UPC}}</p>
+<p>{{product.description}}</p> 
+{% endfor %}
+{% endblock %}

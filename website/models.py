@@ -47,7 +47,7 @@ class Product(models.Model):
 
     def __str__(self):
         ''' returns a string representation of the model '''
-        return self.title
+        return self.description
 
 
 
