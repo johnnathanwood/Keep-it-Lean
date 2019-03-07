@@ -5,15 +5,15 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p><strong>{{product.UPC}}</strong></p>
+<p>UPC: <strong>{{product.UPC}}</strong></p>
 
 {% block Description %}
 
 
-<p>{{product.description}}</p>
+{% endblock %}
+<p>Product: {{product.description}}</p>
 </div>
 </div>
 <br>
-{% endblock %}
 {% endfor %}
 {% endblock %}

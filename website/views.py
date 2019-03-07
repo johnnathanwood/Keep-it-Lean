@@ -92,6 +92,14 @@ def user_logout(request):
     # in the URL in redirects?????
     return HttpResponseRedirect('/')
 
+def overview(request):
+    allProducts = Product.objects.all()
+    product = Product.objects.all()
+    template_name = 'website/overview.html'
+    print(allProducts)
+    context = {'allProducts': allProducts, 'products': product}
+    return render(request, template_name, context)
+
 def billing_status(request):
     billing = Product.objects.filter(status_id=1)
     product = Product.objects.filter(status_id=1)
