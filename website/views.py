@@ -93,7 +93,7 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 def billing_status(request):
-    billing = get_object_or_404(Product, status_id=1)
+    billing = Product.objects.filter(status_id=1)
     product = Product.objects.filter(status_id=1)
     template_name = 'website/billing.html'
     print(product)
@@ -101,11 +101,19 @@ def billing_status(request):
     return render(request, template_name, context)
 
 def design_status(request):
-    design = get_object_or_404(Product, status_id=2)
+    design = Product.objects.filter(status_id=2)
     product = Product.objects.filter(status_id=2)
     template_name = 'website/design.html'
     print(product)
     context = {'design': design, 'products': product}
+    return render(request, template_name, context)
+
+def cnc_status(request):
+    cnc = Product.objects.filter(status_id=3)
+    product = Product.objects.filter(status_id=3)
+    template_name = 'website/CNC.html'
+    print(product)
+    context = {'cnc': cnc, 'products': product}
     return render(request, template_name, context)
 
 

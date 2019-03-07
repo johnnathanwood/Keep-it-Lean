@@ -1,11 +1,19 @@
 {% extends "website/index.html" %}
 
 
-{% block content %}
+{% block UPC %}
 
 {% for product in products %}
 
 <p>{{product.UPC}}</p>
-<p>{{product.description}}</p> 
+
+{% endfor %}
+{% endblock %}
+{% block Description %}
+
+{% for product in products %}
+
+<p>{{product.description}}</p>
+
 {% endfor %}
 {% endblock %}

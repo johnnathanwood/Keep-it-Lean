@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^register$', views.register, name='register'),
     url(r'^billing$', views.billing_status, name='billing_status'),
     url(r'^design$', views.design_status, name='design_status'),
+    url(r'^cnc$', views.cnc_status, name='cnc_status'),
 ]
