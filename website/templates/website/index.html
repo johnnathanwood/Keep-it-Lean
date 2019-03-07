@@ -27,38 +27,35 @@
         </a>
       </li>
       <li>
-        <a>
+        <a href="{% url 'website:grinding_status' %}">
           <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
           <span>Grinding</span>
         </a>
       </li>
       <li>
-        <a>
+        <a href="{% url 'website:painting_status' %}">
           <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
           <span>Painting</span>
         </a>
       </li>
       <li>
-        <a>
+        <a href="{% url 'website:packaging_status' %}">
           <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
           <span>Packaging</span>
         </a>
       </li>
       <li>
-        <a>
+        <a href="{% url 'website:shipping_status' %}">
           <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
           <span>Shipped</span>
         </a>
       </li>
     </ul>
   </div>
-  <div class="container is-fluid">
-    <div class="notification">
-  <strong>{% block UPC %}{% endblock %}</strong>
-  {% block Description%}{% endblock %}
-  
-    </div>
-  </div>
+  {% block UPC %}
+  {% endblock %}
+  {% block Description%}
+  {% endblock %}
 </html>
 
 

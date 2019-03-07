@@ -116,6 +116,38 @@ def cnc_status(request):
     context = {'cnc': cnc, 'products': product}
     return render(request, template_name, context)
 
+def grinding_status(request):
+    grinding = Product.objects.filter(status_id=4)
+    product = Product.objects.filter(status_id=4)
+    template_name = 'website/grinding.html'
+    print(product)
+    context = {'grinding': grinding, 'products': product}
+    return render(request, template_name, context)
+
+def painting_status(request):
+    painting = Product.objects.filter(status_id=5)
+    product = Product.objects.filter(status_id=5)
+    template_name = 'website/painting.html'
+    print(product)
+    context = {'painting': painting, 'products': product}
+    return render(request, template_name, context)
+
+def packaging_status(request):
+    packaging = Product.objects.filter(status_id=6)
+    product = Product.objects.filter(status_id=6)
+    template_name = 'website/packaging.html'
+    print(product)
+    context = {'packaging': packaging, 'products': product}
+    return render(request, template_name, context)
+
+def shipping_status(request):
+    shipping = Product.objects.filter(status_id=7)
+    product = Product.objects.filter(status_id=7)
+    template_name = 'website/shipping.html'
+    print(product)
+    context = {'shipping': shipping, 'products': product}
+    return render(request, template_name, context)
+
 
 
 

@@ -1,19 +1,19 @@
 {% extends "website/index.html" %}
 
-
 {% block UPC %}
 
 {% for product in products %}
+<div class="container is-fluid">
+<div class="notification">
+<p><strong>{{product.UPC}}</strong></p>
 
-<p>{{product.UPC}}</p>
-
-{% endfor %}
-{% endblock %}
 {% block Description %}
 
-{% for product in products %}
 
 <p>{{product.description}}</p>
-
+</div>
+</div>
+<br>
+{% endblock %}
 {% endfor %}
 {% endblock %}
