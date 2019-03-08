@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
 
-from website.models import Product
+from website.models import Product, Status
 
 from website.forms import UserForm
 
@@ -93,11 +93,16 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 def overview(request):
-    allProducts = Product.objects.all()
+    billing = Product.objects.filter(status_id=1)
+    design = Product.objects.filter(status_id=2)
+    cnc = Product.objects.filter(status_id=3)
+    grinding = Product.objects.filter(status_id=4)
+    painting = Product.objects.filter(status_id=5)
+    packaging = Product.objects.filter(status_id=6)
+    shipping = Product.objects.filter(status_id=7)
     product = Product.objects.all()
     template_name = 'website/overview.html'
-    print(allProducts)
-    context = {'allProducts': allProducts, 'products': product}
+    context = {'billing': billing, 'design': design,'cnc':cnc,'grinding':grinding,'painting':painting,'packaging':packaging,'shipping':shipping,'products':product, 'percentage': 100}
     return render(request, template_name, context)
 
 def billing_status(request):
@@ -105,7 +110,7 @@ def billing_status(request):
     product = Product.objects.filter(status_id=1)
     template_name = 'website/billing.html'
     print(product)
-    context = {'billing': billing, 'products': product}
+    context = {'billing': billing, 'products': product, "percentage": 20}
     return render(request, template_name, context)
 
 def design_status(request):
@@ -113,7 +118,7 @@ def design_status(request):
     product = Product.objects.filter(status_id=2)
     template_name = 'website/design.html'
     print(product)
-    context = {'design': design, 'products': product}
+    context = {'design': design, 'products': product, "percentage": 30}
     return render(request, template_name, context)
 
 def cnc_status(request):
@@ -121,7 +126,7 @@ def cnc_status(request):
     product = Product.objects.filter(status_id=3)
     template_name = 'website/CNC.html'
     print(product)
-    context = {'cnc': cnc, 'products': product}
+    context = {'cnc': cnc, 'products': product, "percentage": 40}
     return render(request, template_name, context)
 
 def grinding_status(request):
@@ -129,7 +134,7 @@ def grinding_status(request):
     product = Product.objects.filter(status_id=4)
     template_name = 'website/grinding.html'
     print(product)
-    context = {'grinding': grinding, 'products': product}
+    context = {'grinding': grinding, 'products': product, "percentage": 60}
     return render(request, template_name, context)
 
 def painting_status(request):
@@ -137,7 +142,7 @@ def painting_status(request):
     product = Product.objects.filter(status_id=5)
     template_name = 'website/painting.html'
     print(product)
-    context = {'painting': painting, 'products': product}
+    context = {'painting': painting, 'products': product, "percentage": 70}
     return render(request, template_name, context)
 
 def packaging_status(request):
@@ -145,7 +150,7 @@ def packaging_status(request):
     product = Product.objects.filter(status_id=6)
     template_name = 'website/packaging.html'
     print(product)
-    context = {'packaging': packaging, 'products': product}
+    context = {'packaging': packaging, 'products': product, "percentage": 90}
     return render(request, template_name, context)
 
 def shipping_status(request):
@@ -153,8 +158,29 @@ def shipping_status(request):
     product = Product.objects.filter(status_id=7)
     template_name = 'website/shipping.html'
     print(product)
-    context = {'shipping': shipping, 'products': product}
+    context = {'shipping': shipping, 'products': product, "percentage": 100}
     return render(request, template_name, context)
+
+@login_required
+def sell_product(request):
+    if request.method == 'GET':
+        product_form = ProductForm()
+        template_name = 'product/create.html'
+        return render(request, template_name, {'product_form': product_form})
+
+    if request.method == "POST":
+        seller = request.user.id
+        title = request.POST["title"] 
+        productType = request.POST["productType"] 
+        description = request.POST["description"] 
+        price = request.POST["price"] 
+        quantity = request.POST["quantity"]
+
+        with connection.cursor() as cursor:
+            cursor.execute("INSERT into website_product VALUES(%s, %s, %s, %s, %s, %s, %s, %s)", [None, title, description, price, quantity, None, seller, productType])
+            product_details = cursor.lastrowid
+
+    return HttpResponseRedirect(reverse("website:product_detail", args=(product_details,)))
 
 
 
