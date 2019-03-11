@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
-    <title>Bangazon</title>
+    <title>Keep it Lean</title>
   </head>
   <div class="section">
     <div class="container">
   <div class="tabs is-boxed tabs is-centered">
     <ul>
+      <a href="{% url 'website:process' %}" class="button is-success is-rounded">New product</a>
       <li>
         <a href="{% url 'website:overview' %}">
           <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
@@ -62,6 +63,8 @@
   </div>
 </div>
 </div>
+  {% block processing %}
+  {% endblock %}
   {% block UPC %}
   {% endblock %}
   {% block Description%}

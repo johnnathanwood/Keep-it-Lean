@@ -1,0 +1,17 @@
+
+{% extends 'website/index.html'  %}
+{% load widget_tweaks %}
+  {% block processing %}
+  <body>
+    <h1>Process Product</h1>
+
+
+    <form action="{% url 'website:process' %}" method="post">
+      {% csrf_token %}
+      {{ product_form.as_p }}
+      <input type="submit" value="Process" />
+    </form>
+    </body>
+  {% endblock %}
+
+

@@ -44,6 +44,7 @@ class Product(models.Model):
     status = models.ForeignKey(Status, on_delete= models.PROTECT)
     UPC = models.CharField(max_length=12)
     description = models.TextField(blank=True, null=True)
+    
 
     def __str__(self):
         ''' returns a string representation of the model '''
