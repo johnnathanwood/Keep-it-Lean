@@ -1,5 +1,98 @@
 
 {% extends "website/index.html" %}
 {%block detail%}
-<h1>{{ product_details.UPC }}</h1>
+<div class="section">
+    <center>
+    <table class="table">
+            <div class="container">
+            <thead>
+            <tr>
+                <th><abbr title="quantity">QTY</abbr></th>
+                <th></th>
+                <th>Billing</th>
+                <th>Design</th>
+                <th>CNC</th>
+                <th>Grinding</th>
+                <th>Painting</th>
+                <th>Packaging</th>
+                <th>Shipping</th>
+                <th>UPC</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>1</th>
+                <td>{{ product_details.description }}</td>
+                {% if product_details.status_id == 1 %}
+                <td><progress class="progress is-danger" max="100"></progress></td>
+                <td><progress class="progress is-warning" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 2 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-warning" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 3 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" max="100">15%</progress></td>
+                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 4 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-info" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 5 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-link" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 6 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_details.status_id == 7 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                {% endif %}
+                <td>{{ product_details.UPC }}</td>
+            </tr>
+            </tbody>
+        </div>
+    </table>
+</center>
+</div>
+
 {% endblock %}
+
