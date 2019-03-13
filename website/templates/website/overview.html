@@ -5,7 +5,10 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p>UPC: <strong>{{product.UPC}}</strong></p>
+<p>UPC: <a href="{% url 'website:product_details' product.id %}">
+<strong>{{product.UPC}}</strong>
+</a>
+</p>
 
 {% block Description %}
 
@@ -14,30 +17,29 @@
 <br>
 <p>Tracking status: </p>
 {% if product.status_id == 1 %}
-<progress class="progress is-primary" value="20" max="100"></progress>
+<progress class="progress is-danger" value="20" max="100"></progress>
 {% endif %}
 {% if product.status_id == 2 %}
-<progress class="progress is-primary" value="30" max="100"></progress>
+<progress class="progress is-warning" value="30" max="100"></progress>
 {% endif %}
 {% if product.status_id == 3 %}
 <progress class="progress is-primary" value="40" max="100"></progress>
 {% endif %}
 {% if product.status_id == 4 %}
-<progress class="progress is-primary" value="60" max="100"></progress>
+<progress class="progress is-info" value="60" max="100"></progress>
 {% endif %}
 {% if product.status_id == 5 %}
-<progress class="progress is-primary" value="70" max="100"></progress>
+<progress class="progress is-link" value="70" max="100"></progress>
 {% endif %}
 {% if product.status_id == 6 %}
 <progress class="progress is-primary" value="90" max="100"></progress>
 {% endif %}
 {% if product.status_id == 7 %}
-<progress class="progress is-primary" value="100" max="100"></progress>
+<progress class="progress is-success" value="100" max="100"></progress>
 {% endif %}
 </div>
 </div>
 <br>
-
 {% endfor %}
 
 {% endblock %}

@@ -1,6 +1,12 @@
 from django.conf.urls import url
 
+from django.urls import path
+
 from . import views
+
+from .views import product_details
+
+
 
 app_name = "website"
 urlpatterns = [
@@ -17,4 +23,5 @@ urlpatterns = [
     url(r'^painting$', views.painting_status, name='painting_status'),
     url(r'^packaging$', views.packaging_status, name='packaging_status'),
     url(r'^shipping$', views.shipping_status, name='shipping_status'),
+    path('details/<int:id>/', views.product_details, name='product_details'),
 ]

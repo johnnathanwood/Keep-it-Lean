@@ -5,7 +5,10 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p>UPC: <strong>{{product.UPC}}</strong></p>
+<p>UPC: <a href="{% url 'website:product_details' product.id %}">
+<strong>{{product.UPC}}</strong>
+</a>
+</p>
 
 {% block Description %}
 
@@ -14,7 +17,7 @@
 <p>Product: {{product.description}}</p>
 <br>
 <p>Tracking status: {{location.name}} </p>
-<progress class="progress is-primary" value="{{ percentage }}" max="100"></progress>
+<progress class="progress is-danger" value="{{ percentage }}" max="100"></progress>
 </div>
 </div>
 <br>

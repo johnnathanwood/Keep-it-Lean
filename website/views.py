@@ -182,5 +182,16 @@ def process_product(request):
 
     return HttpResponseRedirect(reverse('website:overview'))
 
+def product_details(request, id):
+    product_details = get_object_or_404(Product, pk=id)
+    context = {'product_details': product_details,}
+    return render(request, 'website/details.html', context)
+
+def product_delete(self, id):
+    print(id)
+    product = get_object_or_404(Product, pk= id)
+    product.delete()
+    return HttpResponseRedirect(reverse("website:overview"))
+
 
 
