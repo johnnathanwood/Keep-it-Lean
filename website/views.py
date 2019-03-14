@@ -196,27 +196,27 @@ def send_to_design(request, product_id):
     if send_to_design.status_id == 1:
        send_to_design.status_id = 2
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:design_status"))
+       return HttpResponseRedirect(reverse("website:design_status"))
     if send_to_design.status_id == 2:
        send_to_design.status_id = 3
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:cnc_status"))
+       return HttpResponseRedirect(reverse("website:cnc_status"))
     if send_to_design.status_id == 3:
        send_to_design.status_id = 4
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:grinding_status"))
+       return HttpResponseRedirect(reverse("website:grinding_status"))
     if send_to_design.status_id == 4:
        send_to_design.status_id = 5
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:painting_status"))
+       return HttpResponseRedirect(reverse("website:painting_status"))
     if send_to_design.status_id == 5:
        send_to_design.status_id = 6
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:packaging_status"))
+       return HttpResponseRedirect(reverse("website:packaging_status"))
     if send_to_design.status_id == 6:
        send_to_design.status_id = 7
        send_to_design.save()
-    return HttpResponseRedirect(reverse("website:shipping_status"))
+       return HttpResponseRedirect(reverse("website:shipping_status"))
 
 
 
