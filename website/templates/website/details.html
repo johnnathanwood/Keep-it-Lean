@@ -1,21 +1,19 @@
 
 {% extends "website/index.html" %}
 {%block detail%}
-<div class="section">
     <center>
-    <table class="table">
-            <div class="container">
+    <table class="table is-bordered is-striped  is-hoverable" >
             <thead>
             <tr>
                 <th><abbr title="quantity">QTY</abbr></th>
                 <th></th>
-                <th>Billing</th>
-                <th>Design</th>
-                <th>CNC</th>
-                <th>Grinding</th>
-                <th>Painting</th>
-                <th>Packaging</th>
-                <th>Shipping</th>
+                <th>&ensp;Billing&ensp;</th>
+                <th>&ensp;Design&ensp;</th>
+                <th>&ensp;&ensp;CNC&ensp;&ensp;</th>
+                <th>&ensp;Grinding&ensp;</th>
+                <th>&ensp;Painting&ensp;</th>
+                <th>&ensp;Packaging&ensp;</th>
+                <th>&ensp;Shipping&ensp;</th>
                 <th>UPC</th>
             </tr>
             </thead>
@@ -25,12 +23,12 @@
                 <td>{{ product_details.description }}</td>
                 {% if product_details.status_id == 1 %}
                 <td><progress class="progress is-danger" max="100"></progress></td>
-                <td><progress class="progress is-warning" value="0" max="100">15%</progress></td>
-                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
-                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
-                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
-                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
-                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-warning" value="0" max="100"></progress></td>
+                <td><progress class="progress is-primary" value="0" max="100"></progress></td>
+                <td><progress class="progress is-info" value="0" max="100"></progress></td>
+                <td><progress class="progress is-link" value="0" max="100"></progress></td>
+                <td><progress class="progress is-primary" value="0" max="100"></progress></td>
+                <td><progress class="progress is-success" value="0" max="100"></progress></td>
                 {% endif %}
                 {% if product_details.status_id == 2 %}
                 <td><progress class="progress is-success" value="100" max="100"></progress></td>
@@ -93,6 +91,7 @@
     </table>
 </center>
 </div>
+<br>
 <div class="level-item has-text-centered">
 {% if product_details.status_id == 1 %}
 <a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
