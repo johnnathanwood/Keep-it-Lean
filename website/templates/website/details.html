@@ -93,25 +93,26 @@
     </table>
 </center>
 </div>
+<div class="level-item has-text-centered">
 {% if product_details.status_id == 1 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
 {% endif %}
 {% if product_details.status_id == 2 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a></button>
 {% endif %}
 {% if product_details.status_id == 3 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a></button>
 {% endif %}
 {% if product_details.status_id == 4 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a></button>
 {% endif %}
 {% if product_details.status_id == 5 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a></button>
 {% endif %}
 {% if product_details.status_id == 6 %}
-<button><a href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a></button>
 {% endif %}
-
+</div>
 
 {% endblock %}
 
