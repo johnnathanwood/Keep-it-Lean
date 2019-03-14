@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^painting$', views.painting_status, name='painting_status'),
     url(r'^packaging$', views.packaging_status, name='packaging_status'),
     url(r'^shipping$', views.shipping_status, name='shipping_status'),
-    path('details/<int:id>/', views.product_details, name='product_details'),
+    path('details/<int:id>/<int:status_id>/', views.product_details, name='product_details'),
+    path('send_to_design/<int:status_id>/', views.send_to_design, name='send_to_design'),
 ]

@@ -5,7 +5,7 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p>UPC: <a href="{% url 'website:product_details' product.id %}">
+<p>UPC: <a href="{% url 'website:product_details' product.id product.status_id %}">
 <strong>{{product.UPC}}</strong>
 </a>
 </p>

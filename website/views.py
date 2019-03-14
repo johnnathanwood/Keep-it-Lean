@@ -182,16 +182,22 @@ def process_product(request):
 
     return HttpResponseRedirect(reverse('website:overview'))
 
-def product_details(request, id):
-    product_details = get_object_or_404(Product, pk=id)
-    context = {'product_details': product_details,}
+def product_details(request, id, status_id):
+    product_details = get_object_or_404(Product, pk=id, status_id=status_id)
+    context = {'product_details': product_details}
     return render(request, 'website/details.html', context)
 
-def product_delete(self, id):
-    print(id)
-    product = get_object_or_404(Product, pk= id)
-    product.delete()
-    return HttpResponseRedirect(reverse("website:overview"))
+    
+
+def send_to_design(request, status_id):
+    send_to_design = get_object_or_404(Product, status_id=status_id)
+    if send_to_design.status_id == 1:
+       send_to_design.status_id = 2
+       send_to_design.update()
+    return HttpResponseRedirect(reverse("website:billing", args=(status_id, )))
+
+
+
 
 
 
