@@ -1,0 +1,68 @@
+{% extends "website/index.html" %}
+
+{% block search %}
+    <div class="row">
+      <div class="col-10">
+        <h2>Product Search</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {% if no_results %}
+            <h6>There are no search results for {{ search_text }}</h6>
+            {% else %}
+
+            <h6>{{ length }} results for {{ search_text }}:</h6>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <ul class="list-group">
+          {% for product in results %}
+          <div class="container is-fluid">
+                <div class="notification">
+                <p>UPC: <a href="{% url 'website:product_details' product.id product.status_id %}">
+                <strong>{{product.UPC}}</strong>
+                </a>
+                </p>
+                
+                {% block Description %}
+                
+                {% endblock %}
+                <p>Product: {{product.description}}</p>
+                <br>
+                <p>Tracking status: </p>
+                {% if product.status_id == 1 %}
+                <progress class="progress is-danger" value="20" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 2 %}
+                <progress class="progress is-warning" value="30" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 3 %}
+                <progress class="progress is-primary" value="40" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 4 %}
+                <progress class="progress is-info" value="60" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 5 %}
+                <progress class="progress is-link" value="70" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 6 %}
+                <progress class="progress is-primary" value="90" max="100"></progress>
+                {% endif %}
+                {% if product.status_id == 7 %}
+                <progress class="progress is-success" value="100" max="100"></progress>
+                {% endif %}
+                </div>
+                </div>
+                <br>
+
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+{% endblock search %}

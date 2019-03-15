@@ -218,7 +218,31 @@ def send_to_design(request, product_id):
        send_to_design.save()
        return HttpResponseRedirect(reverse("website:shipping_status"))
 
+def product_search(request):
 
+    if request.method == "POST":
+
+        search_text = request.POST["search_text"]
+
+        if search_text is not "":
+            by_UPC = Product.objects.filter(UPC__contains=search_text).order_by("UPC", "description")
+            by_description = Product.objects.filter(description__contains=search_text).order_by("UPC", "description")
+            results = by_UPC | by_description
+            context = {
+                "results": results,
+                "length": len(results),
+                "search_text": search_text,
+                "no_results": True if len(results) is 0 else False
+            }
+        else:
+            context = {
+                "no_results": True,
+                "search_text": search_text
+            }
+        return render(request, 'website/product_search.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('website:overview'))
 
 
 

@@ -1,7 +1,12 @@
 {% extends "website/index.html" %}
 
 {% block UPC %}
-
+<form action="{% url 'website:product_search' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control" name="search_text" id="search_text" placeholder="search by UPC or Description"><button class="input-group-append btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
