@@ -244,6 +244,11 @@ def product_search(request):
     else:
         return HttpResponseRedirect(reverse('website:overview'))
 
+def product_delete(request, product_id):
 
+    product = get_object_or_404(Product, pk=product_id)
+
+    product.delete()
+    return HttpResponseRedirect(reverse('website:overview'))
 
 

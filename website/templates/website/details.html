@@ -111,6 +111,7 @@
 {% if product_details.status_id == 6 %}
 <a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a></button>
 {% endif %}
+<a class="button is-primary" href="{% url 'website:product_delete' product_details.id %}">Cancel Product</a></button>
 </div>
 
 {% endblock %}

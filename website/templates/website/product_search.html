@@ -1,22 +1,21 @@
 {% extends "website/index.html" %}
 
 {% block search %}
-    <div class="row">
-      <div class="col-10">
-        <h2>Product Search</h2>
-      </div>
-    </div>
 
-    <div class="row">
-      <div class="col">
         {% if no_results %}
-            <h6>There are no search results for {{ search_text }}</h6>
-            {% else %}
-
-            <h6>{{ length }} results for {{ search_text }}:</h6>
+        <div class="class="tile is-parent">
+        <div class="notification is-danger">
+        <p class="title has-text-centered">There are no search results for {{ search_text }}</p>
+        </div>
+        </div>
+        {% else %}
+        <div class="class="tile is-parent">
+        <div class="notification is-success">
+            <p class="title has-text-centered"><strong>{{ length }} </strong>result(s) for <strong>{{ search_text }}</strong></p>
+        </div>
+        </div>
         {% endif %}
-      </div>
-    </div>
+        <br>
 
     <div class="row">
       <div class="col">
