@@ -104,9 +104,9 @@ def overview(request):
     painting = Product.objects.filter(status_id=5)
     packaging = Product.objects.filter(status_id=6)
     shipping = Product.objects.filter(status_id=7)
-    product = Product.objects.all()
+    product = Product.objects.all().order_by('status_id')
     template_name = 'website/overview.html'
-    context = {'billing': billing, 'design': design,'cnc':cnc,'grinding':grinding,'painting':painting,'packaging':packaging,'shipping':shipping,'products':product, 'percentage': 100}
+    context = {"tab_overview":"is-active",'billing': billing, 'design': design,'cnc':cnc,'grinding':grinding,'painting':painting,'packaging':packaging,'shipping':shipping,'products':product, 'percentage': 100}
     return render(request, template_name, context)
 
 def billing_status(request):
@@ -114,7 +114,7 @@ def billing_status(request):
     product = Product.objects.filter(status_id=1)
     template_name = 'website/billing.html'
     print(product)
-    context = {'billing': billing, 'products': product, "percentage": 20}
+    context = {'billing': billing, 'products': product,"tab_billing":"is-active","percentage": 20}
     return render(request, template_name, context)
 
 def design_status(request):
@@ -122,7 +122,7 @@ def design_status(request):
     product = Product.objects.filter(status_id=2)
     template_name = 'website/design.html'
     print(product)
-    context = {'design': design, 'products': product, "percentage": 30}
+    context = {'design': design, 'products': product,"tab_design":"is-active", "percentage": 30}
     return render(request, template_name, context)
 
 def cnc_status(request):
@@ -130,7 +130,7 @@ def cnc_status(request):
     product = Product.objects.filter(status_id=3)
     template_name = 'website/CNC.html'
     print(product)
-    context = {'cnc': cnc, 'products': product, "percentage": 40}
+    context = {'cnc': cnc, 'products': product, "tab_cnc":"is-active","percentage": 40}
     return render(request, template_name, context)
 
 def grinding_status(request):
@@ -138,7 +138,7 @@ def grinding_status(request):
     product = Product.objects.filter(status_id=4)
     template_name = 'website/grinding.html'
     print(product)
-    context = {'grinding': grinding, 'products': product, "percentage": 60}
+    context = {'grinding': grinding, 'products': product, "tab_grinding":"is-active","percentage": 60}
     return render(request, template_name, context)
 
 def painting_status(request):
@@ -146,7 +146,7 @@ def painting_status(request):
     product = Product.objects.filter(status_id=5)
     template_name = 'website/painting.html'
     print(product)
-    context = {'painting': painting, 'products': product, "percentage": 70}
+    context = {'painting': painting, 'products': product, "tab_painting":"is-active","percentage": 70}
     return render(request, template_name, context)
 
 def packaging_status(request):
@@ -154,7 +154,7 @@ def packaging_status(request):
     product = Product.objects.filter(status_id=6)
     template_name = 'website/packaging.html'
     print(product)
-    context = {'packaging': packaging, 'products': product, "percentage": 90}
+    context = {'packaging': packaging, 'products': product, "tab_packaging":"is-active","percentage": 90}
     return render(request, template_name, context)
 
 def shipping_status(request):
@@ -162,14 +162,14 @@ def shipping_status(request):
     product = Product.objects.filter(status_id=7)
     template_name = 'website/shipping.html'
     print(product)
-    context = {'shipping': shipping, 'products': product, "percentage": 100}
+    context = {'shipping': shipping, 'products': product,"tab_shipping":"is-active","percentage": 100}
     return render(request, template_name, context)
 
 def process_product(request):
     if request.method == 'GET':
         product_form = ProductForm()
         template_name = 'website/process.html'
-        return render(request, template_name, {'product_form': product_form})
+        return render(request, template_name, {'product_form': product_form, "tab_process":"is-active"})
 
     if request.method == "POST":
         upc = request.POST["UPC"] 

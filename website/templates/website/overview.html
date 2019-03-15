@@ -30,26 +30,32 @@
 {% endblock %}
 <p>Product: {{product.description}}</p>
 <br>
-<p>Tracking status: </p>
 {% if product.status_id == 1 %}
+<p>Tracking status: Billing</p>
 <progress class="progress is-danger" value="20" max="100"></progress>
 {% endif %}
 {% if product.status_id == 2 %}
+<p>Tracking status: Design</p>
 <progress class="progress is-warning" value="30" max="100"></progress>
 {% endif %}
 {% if product.status_id == 3 %}
+<p>Tracking status: CNC</p>
 <progress class="progress is-primary" value="40" max="100"></progress>
 {% endif %}
 {% if product.status_id == 4 %}
+<p>Tracking status: Grinding</p>
 <progress class="progress is-info" value="60" max="100"></progress>
 {% endif %}
 {% if product.status_id == 5 %}
+<p>Tracking status: Painting</p>
 <progress class="progress is-link" value="70" max="100"></progress>
 {% endif %}
 {% if product.status_id == 6 %}
+<p>Tracking status: Packaging</p>
 <progress class="progress is-primary" value="90" max="100"></progress>
 {% endif %}
 {% if product.status_id == 7 %}
+<p>Tracking status: Shipping</p>
 <progress class="progress is-success" value="100" max="100"></progress>
 {% endif %}
 </div>

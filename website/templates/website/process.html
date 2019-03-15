@@ -4,18 +4,18 @@
   {% block processing %}
     <form action="{% url 'website:process' %}" method="post">
       {% csrf_token %}
-      <section class="hero is-small section-padding-medium">
-            <div class="hero-body is-8">
+      <section>
+            <div>
             <div class="container">
             <h1 class="title">
                     Add product UPC
             </h1>
-        {{ product_form.UPC|add_class:"input"}}
+        {{ product_form.UPC|add_class:"input is-small"}}
             </div>
             </div>
       </section>
       <section class="hero">
-            <div class="hero-body is-8">
+            <div class="hero-body">
             <div class="container">
             <h1 class="title">
                     Add product Description
