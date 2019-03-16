@@ -2,6 +2,17 @@
 {% extends "website/index.html" %}
 {%block warning %}
     <center>
+            <div class="class="tile is-parent">
+                    <div class="notification is-warning">
+                        <p class="title has-text-centered"><strong>ARE YOU SURE YOU WANT TO REMOVE THIS ORDER?</strong></p>
+                        <div class="level-item has-text-centered">
+                            <a class="button is-danger" href="{% url 'website:product_delete' product_delete_confirm.id product_delete_confirm.status_id %}">YES</a></button>
+                            &ensp;
+                            <button class="button is-danger" onclick="window.history.back();" type="button">&nbsp;NO&nbsp;</button>
+                                </div>
+                    </div>
+                    </div>
+                    <br>
     <table class="table is-bordered is-striped  is-hoverable" >
             <thead>
             <tr>
@@ -92,27 +103,7 @@
 </center>
 </div>
 <br>
-<div class="level-item has-text-centered">
-{% if product_delete_confirm.status_id == 1 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Design</a>
-{% endif %}
-{% if product_delete_confirm.status_id == 2 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to CNC</a></button>
-{% endif %}
-{% if product_delete_confirm.status_id == 3 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Grinding</a></button>
-{% endif %}
-{% if product_delete_confirm.status_id == 4 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Painting</a></button>
-{% endif %}
-{% if product_delete_confirm.status_id == 5 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Packaging</a></button>
-{% endif %}
-{% if product_delete_confirm.status_id == 6 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Shipping</a></button>
-{% endif %}
-</div>
-<a class="button is-primary" href="{% url 'website:product_delete' product_delete_confirm.id product_delete_confirm.status_id %}">Cancel Product</a></button>
+
 </div>
 
 {% endblock %}
