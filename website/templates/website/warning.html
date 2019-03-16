@@ -1,0 +1,121 @@
+
+{% extends "website/index.html" %}
+{%block warning %}
+    <center>
+    <table class="table is-bordered is-striped  is-hoverable" >
+            <thead>
+            <tr>
+                <th><abbr title="quantity">QTY</abbr></th>
+                <th></th>
+                <th>&ensp;Billing&ensp;</th>
+                <th>&ensp;Design&ensp;</th>
+                <th>&ensp;&ensp;CNC&ensp;&ensp;</th>
+                <th>&ensp;Grinding&ensp;</th>
+                <th>&ensp;Painting&ensp;</th>
+                <th>&ensp;Packaging&ensp;</th>
+                <th>&ensp;Shipping&ensp;</th>
+                <th>UPC</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>1</th>
+                <td>{{ product_delete_confirm.description }}</td>
+                {% if product_delete_confirm.status_id == 1 %}
+                <td><progress class="progress is-danger" max="100"></progress></td>
+                <td><progress class="progress is-warning" value="0" max="100"></progress></td>
+                <td><progress class="progress is-primary" value="0" max="100"></progress></td>
+                <td><progress class="progress is-info" value="0" max="100"></progress></td>
+                <td><progress class="progress is-link" value="0" max="100"></progress></td>
+                <td><progress class="progress is-primary" value="0" max="100"></progress></td>
+                <td><progress class="progress is-success" value="0" max="100"></progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 2 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-warning" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 3 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" max="100">15%</progress></td>
+                <td><progress class="progress is-info" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 4 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-info" max="100">15%</progress></td>
+                <td><progress class="progress is-link" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 5 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-link" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" value="0" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 6 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-primary" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="0" max="100">15%</progress></td>
+                {% endif %}
+                {% if product_delete_confirm.status_id == 7 %}
+                <td><progress class="progress is-success" value="100" max="100"></progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                <td><progress class="progress is-success" value="100" max="100">15%</progress></td>
+                {% endif %}
+                <td>{{ product_delete_confirm.UPC }}</td>
+            </tr>
+            </tbody>
+        </div>
+    </table>
+</center>
+</div>
+<br>
+<div class="level-item has-text-centered">
+{% if product_delete_confirm.status_id == 1 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Design</a>
+{% endif %}
+{% if product_delete_confirm.status_id == 2 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to CNC</a></button>
+{% endif %}
+{% if product_delete_confirm.status_id == 3 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Grinding</a></button>
+{% endif %}
+{% if product_delete_confirm.status_id == 4 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Painting</a></button>
+{% endif %}
+{% if product_delete_confirm.status_id == 5 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Packaging</a></button>
+{% endif %}
+{% if product_delete_confirm.status_id == 6 %}
+<a class="button is-primary" href="{% url 'website:send_to_design' product_delete_confirm.id %}">Process to Shipping</a></button>
+{% endif %}
+</div>
+<a class="button is-primary" href="{% url 'website:product_delete' product_delete_confirm.id product_delete_confirm.status_id %}">Cancel Product</a></button>
+</div>
+
+{% endblock %}
+
+
+</div>

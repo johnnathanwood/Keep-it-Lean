@@ -4,7 +4,7 @@ from django.urls import path
 
 from . import views
 
-from .views import product_details
+from .views import product_details,product_delete_confirm, product_delete
 
 
 
@@ -26,5 +26,6 @@ urlpatterns = [
     path('details/<int:id>/<int:status_id>/', views.product_details, name='product_details'),
     path('send_to_design/<int:product_id>/', views.send_to_design, name='send_to_design'),
     path("product/search", views.product_search, name="product_search"),
-    path("delete/<int:product_id>/<int:status_id>/", views.product_delete, name="product_delete"),
-]
+    path("warning/<int:id>/<int:status_id>/", views.product_delete_confirm, name="product_delete_confirm"),
+    path("delete/<int:product_id>/<int:status_id>/", views.product_delete, name="product_delete")
+    ]

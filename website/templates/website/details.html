@@ -93,26 +93,29 @@
 </div>
 <br>
 <div class="level-item has-text-centered">
+<p class="buttons">
 {% if product_details.status_id == 1 %}
 <a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
 {% endif %}
 {% if product_details.status_id == 2 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a>
 {% endif %}
 {% if product_details.status_id == 3 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a>
 {% endif %}
 {% if product_details.status_id == 4 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a>
 {% endif %}
 {% if product_details.status_id == 5 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a>
 {% endif %}
 {% if product_details.status_id == 6 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a></button>
+<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a>
 {% endif %}
-<a class="button is-primary" href="{% url 'website:product_delete' product_details.id product_details.status_id %}">Cancel Product</a></button>
+&ensp;
+<a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Product&ensp;&ensp;</a>
+</p>
 </div>
-
 {% endblock %}
+
 

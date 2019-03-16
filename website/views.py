@@ -187,7 +187,6 @@ def product_details(request,id, status_id):
     context = {'product_details': product_details}
     return render(request, 'website/details.html', context)
 
-    
 
 def send_to_design(request, product_id):
     print("STATUS", product_id)
@@ -244,12 +243,13 @@ def product_search(request):
     else:
         return HttpResponseRedirect(reverse('website:overview'))
 
-def product_delete(request, product_id, status_id):
-    product = get_object_or_404(Product, pk=product_id, status_id=status_id)
-    product.delete()
-    return HttpResponseRedirect(reverse('website:overview'))
+def product_delete_confirm(request, id, status_id):
+    product_delete_confirm = get_object_or_404(Product, pk=id, status_id=status_id)
+    context = {'product_delete_confirm': product_delete_confirm}
+    return render(request,'website/warning.html', context)
 
-def product_delete(request, product_id, status_id):
+
+def product_delete(request,product_id, status_id):
     product = get_object_or_404(Product, pk=product_id, status_id=status_id)
     product.delete()
     if product.status_id == 1:
