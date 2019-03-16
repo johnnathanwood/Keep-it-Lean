@@ -244,11 +244,30 @@ def product_search(request):
     else:
         return HttpResponseRedirect(reverse('website:overview'))
 
-def product_delete(request, product_id):
-
-    product = get_object_or_404(Product, pk=product_id)
-
+def product_delete(request, product_id, status_id):
+    product = get_object_or_404(Product, pk=product_id, status_id=status_id)
     product.delete()
     return HttpResponseRedirect(reverse('website:overview'))
+
+def product_delete(request, product_id, status_id):
+    product = get_object_or_404(Product, pk=product_id, status_id=status_id)
+    product.delete()
+    if product.status_id == 1:
+       return HttpResponseRedirect(reverse("website:billing_status"))
+    if product.status_id == 2:
+       return HttpResponseRedirect(reverse("website:design_status"))
+    if product.status_id == 3:
+       return HttpResponseRedirect(reverse("website:cnc_status"))
+    if product.status_id == 4:
+       return HttpResponseRedirect(reverse("website:grinding_status"))
+    if product.status_id == 5:
+       return HttpResponseRedirect(reverse("website:painting_status"))
+    if product.status_id == 6:
+       return HttpResponseRedirect(reverse("website:packaging_status"))
+    if product.status_id == 7:
+       return HttpResponseRedirect(reverse("website:shipping_status"))
+    else:
+        return HttpResponseRedirect(reverse('website:overview'))
+
 
 
