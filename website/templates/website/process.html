@@ -13,7 +13,7 @@
     <title>Keep it Lean</title>
   </head>
   <body>
-    <form action="{% url 'website:process' %}" method="post">
+    <form action="{% url 'website:process' %}" method="post" oninput="x.value=parseInt(UPC.value)">
       {% csrf_token %}
       <div class="container">
               <h1 class="title">
@@ -21,17 +21,18 @@
               </h1>
             <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
                 <div class="column is-half">
-        {{ product_form.UPC|add_class:"input is-small"|attr:"id:input"|attr:"onkeyup=saveValue(this)"}}
+        {{ product_form.UPC|add_class:"input is-small"|attr:"id:input"}}
                 </div>
             <div class="column is-half" id="app">
             <div id="svg"></div>
+            <output name="x" for="input"></output>
           </div>
         </div>
       </div>
       <div class="container">
       <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
           <div class="column is-half">
-      <button class="button is-info is-centered" type="button" value="Print Barcode" onclick="printPage('app','input');">Print Barcode</button>
+      <button class="button is-info is-centered" type="button" value="Print Barcode" onclick="printPage('app');">Print Barcode</button>
       </div>
       </div>
       </div>

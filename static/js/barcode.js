@@ -143,11 +143,11 @@ if (qscode) {
 	// })();
 }
 
-function printPage(id)
+function printPage(svg)
 {
    var html="<html>";
-   html+= document.getElementById(id).innerHTML;
-
+   html+= document.getElementById(svg).innerHTML;
+   
    html+="</html>";
 
    var printWin = window.open('','','left=0,top=0,width=1,height=1,toolbar=0,scrollbars=0,status  =0');
