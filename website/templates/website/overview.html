@@ -1,6 +1,14 @@
 {% extends "website/index.html" %}
 
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/website/static/search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Keep it Lean</title>
+  </head>
 {% block UPC %}
 {% csrf_token %}
 <div class="level-item">
@@ -8,10 +16,10 @@
 {% csrf_token %}
         <div class="field has-addons">
             <p class="control">
-                <input type="text" class="input" name="search_text" id="search_text" placeholder="UPC or Description">
+                <input type="text" class="input " name="search_text" id="search_text" placeholder="UPC or Description">
             </p>
             <p class="control">
-                <button class="button is-primary" type="submit">Search</button>
+                <button class="button is-info" type="submit">Search</button>
             </p>
         </div>
     </form>
@@ -64,4 +72,5 @@
 {% endfor %}
 
 {% endblock %}
+</html>
 

@@ -94,26 +94,26 @@
 <br>
 <div class="level-item has-text-centered">
 <p class="buttons">
+    &ensp;
+<a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Product&ensp;&ensp;</a>
 {% if product_details.status_id == 1 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
 {% endif %}
 {% if product_details.status_id == 2 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a>
 {% endif %}
 {% if product_details.status_id == 3 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a>
 {% endif %}
 {% if product_details.status_id == 4 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a>
 {% endif %}
 {% if product_details.status_id == 5 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a>
 {% endif %}
 {% if product_details.status_id == 6 %}
-<a class="button is-primary" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a>
+<a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a>
 {% endif %}
-&ensp;
-<a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Product&ensp;&ensp;</a>
 </p>
 </div>
 {% endblock %}

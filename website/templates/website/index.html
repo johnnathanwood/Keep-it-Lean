@@ -1,10 +1,13 @@
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/website/styles/style.css">
+    <link rel="stylesheet" href="/website/styles/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <title>Keep it Lean</title>
   </head>
   <div class="section">
@@ -13,7 +16,7 @@
     <ul>
       <li class="{{ tab_process }}">
         <a href="{% url 'website:process' %}">
-          <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+          <span class="fas fa-image"><i class="fas fa-image" aria-hidden="true"></i></span>
           <span>New Product</span>
         </a>
       </li>
@@ -69,6 +72,7 @@
   </div>
 </div>
 </div>
+<body class="contentbody">
   {% block processing %}
   {% endblock %}
   {% block UPC %}
@@ -81,7 +85,7 @@
   {% endblock search %}
   {% block warning %}
   {% endblock warning %}
-
+</body>
   
 
 </html>

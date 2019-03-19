@@ -17,6 +17,10 @@ def index(request):
     template_name = 'website/index.html'
     return render(request, template_name, {})
 
+def test(request):
+    template_name = 'website/scss.html'
+    return render(request, template_name, {})
+
 
 # Create your views here.
 def register(request):

@@ -2,32 +2,56 @@
 {% extends 'website/index.html'  %}
 {% load widget_tweaks %}
   {% block processing %}
+  {% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="static/css/mystyles.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <title>Keep it Lean</title>
+  </head>
+  <body>
     <form action="{% url 'website:process' %}" method="post">
       {% csrf_token %}
-      <section>
-            <div>
-            <div class="container">
-            <h1 class="title">
-                    Add product UPC
-            </h1>
-        {{ product_form.UPC|add_class:"input is-small"}}
-            </div>
-            </div>
-      </section>
-      <section class="hero">
-            <div class="hero-body">
-            <div class="container">
+      <div class="container">
+              <h1 class="title">
+                Add product UPC
+              </h1>
+            <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+                <div class="column is-half">
+        {{ product_form.UPC|add_class:"input is-small"|attr:"id:input"|attr:"onkeyup=saveValue(this)"}}
+                </div>
+            <div class="column is-half" id="app">
+            <div id="svg"></div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+      <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+          <div class="column is-half">
+      <button class="button is-info is-centered" type="button" value="Print Barcode" onclick="printPage('app','input');">Print Barcode</button>
+      </div>
+      </div>
+      </div>
+      <div class="container">
+          <div class="columns is-variable is-1-mobile is-0-tablet is-3-desktop is-8-widescreen is-2-fullhd">
+              <div class="column is-full">
             <h1 class="title">
                     Add product Description
             </h1>
-        {{ product_form.description|add_class:"textarea"}}
+        {{ product_form.description|add_class:"textarea is-small"}}
             </div>
-            </div>
-        </section>
+        </div>
         <div class="buttons is-centered">
-    <button class="button is-large is-primary is-centered" type="submit" value="Send To Billing">Send To Billing</button>
+    <button class="button is-large is-info is-centered" type="submit" value="Send To Billing">Send To Billing</button>
 </div>
     </form>
+    {% load static %}
+    <script src="{% static '/js/barcode.js' %}"></script>
+    </body>
+    </html>
   {% endblock %}
 
 
