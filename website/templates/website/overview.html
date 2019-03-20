@@ -19,7 +19,7 @@
 {% csrf_token %}
         <div class="field has-addons">
             <p class="control">
-                <input onFocus="this.select()" type="text" class="input" name="search_text"  id="search_text" placeholder="UPC or Description">
+                <input onFocus="this.select()" type="text" class="input" name="search_text"  id="search_text" placeholder="Order# or Description">
             </p>
             <p class="control">
                 <button class="button is-info" name="button" id="searchbutton"  type="submit">Search</button>
@@ -31,7 +31,7 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p>UPC: <a href="{% url 'website:product_details' product.id product.status_id %}">
+<p>Order Number: <a href="{% url 'website:product_details' product.id product.status_id %}">
 <strong>{{product.UPC}}</strong>
 </a>
 </p>
