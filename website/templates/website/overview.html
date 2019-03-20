@@ -1,25 +1,28 @@
 {% extends "website/index.html" %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+      <meta charset="utf-8">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link rel="stylesheet" href="/website/static/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <title>Keep it Lean</title>
   </head>
+  <body>
 {% block UPC %}
 {% csrf_token %}
 <div class="level-item">
-    <form class="field" action="{% url 'website:product_search' %}" method="POST">
+    <form class="field" action="{% url 'website:product_search' %}" id="paste" method="POST">
 {% csrf_token %}
         <div class="field has-addons">
             <p class="control">
-                <input type="text" class="input " name="search_text" id="search_text" placeholder="UPC or Description">
+                <input onFocus="this.select()" type="text" class="input" name="search_text"  id="search_text" placeholder="Order# or Description">
             </p>
             <p class="control">
-                <button class="button is-info" type="submit">Search</button>
+                <button class="button is-info" name="button" id="searchbutton"  type="submit">Search</button>
             </p>
         </div>
     </form>
@@ -28,7 +31,7 @@
 {% for product in products %}
 <div class="container is-fluid">
 <div class="notification">
-<p>UPC: <a href="{% url 'website:product_details' product.id product.status_id %}">
+<p>Order Number: <a href="{% url 'website:product_details' product.id product.status_id %}">
 <strong>{{product.UPC}}</strong>
 </a>
 </p>
@@ -69,8 +72,12 @@
 </div>
 </div>
 <br>
+{% load static %}
+<script src="{% static '/js/search.js' %}"></script>
+
 {% endfor %}
 
 {% endblock %}
+</body>
 </html>
 

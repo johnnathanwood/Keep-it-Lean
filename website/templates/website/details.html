@@ -14,7 +14,7 @@
                 <th>&ensp;Painting&ensp;</th>
                 <th>&ensp;Packaging&ensp;</th>
                 <th>&ensp;Shipping&ensp;</th>
-                <th>UPC</th>
+                <th>Order Number</th>
             </tr>
             </thead>
             <tbody>
@@ -92,27 +92,55 @@
 </center>
 </div>
 <br>
+{% if product_details.status_id == 1 %}
 <div class="level-item has-text-centered">
 <p class="buttons">
-    &ensp;
-<a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Product&ensp;&ensp;</a>
-{% if product_details.status_id == 1 %}
+&ensp;
+<a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Design</a>
 {% endif %}
 {% if product_details.status_id == 2 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>        
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to CNC</a>
 {% endif %}
 {% if product_details.status_id == 3 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>
+        
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Grinding</a>
 {% endif %}
 {% if product_details.status_id == 4 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>        
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Painting</a>
 {% endif %}
 {% if product_details.status_id == 5 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>
+        
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Packaging</a>
 {% endif %}
 {% if product_details.status_id == 6 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Cancel Order&ensp;&ensp;</a>        
 <a class="button is-info" href="{% url 'website:send_to_design' product_details.id %}">Process to Shipping</a>
+{% endif %}
+{% if product_details.status_id == 7 %}
+<div class="level-item has-text-centered">
+        <p class="buttons">
+        &ensp;
+        <a class="button is-warning" href="{% url 'website:product_delete_confirm' product_details.id product_details.status_id %}">&ensp;&ensp;Remove Order&ensp;&ensp;</a>        
 {% endif %}
 </p>
 </div>
