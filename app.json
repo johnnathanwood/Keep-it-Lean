@@ -1,16 +1,22 @@
 {
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ],
+  "name": "keep-it-lean",
+  "description": "small business ERP",
+  "image": "heroku/python",
+  "repository": "https://github.com/johnnathanwood/Keep-it-Lean",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ],
   "env": {
+    "SECRET_KEY": {
+      "description": "The secret key for the Django application.",
+      "generator": "secret"
+    }
   },
-  "formation": {
-  },
-  "name": "Keep-it-Lean",
-  "scripts": {
-  },
-  "stack": "heroku-18"
+  "environments": {
+    "test": {
+      "scripts": {
+        "test-setup": "python manage.py collectstatic --noinput",
+        "test": "python manage.py test"
+      }
+    }
+  }
 }
