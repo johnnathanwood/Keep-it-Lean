@@ -1,0 +1,30 @@
+
+svg, #input {
+	display:block;
+	width: 90vw;
+	max-width: 600px;
+	height: auto;
+  max-height: 10vh;
+}
+
+#app {
+	display:flex;
+	flex-flow: column nowrap;
+	align-items: center;
+}
+
+#input {
+	text-align: center;
+	padding: 0.4em 0;
+	border:none;
+	outline:none;
+	font-size: 1.2em;
+  text-transform: uppercase;
+}
+#input:hover {
+	opacity:0.75;
+}
+
+.example-print {
+  display: none;
+}
