@@ -1,31 +1,68 @@
+
+
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bangazon</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.7.4-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" type="text/css" href="/website/styles/login.css">
     </head>
 
     <body>
-        <h1>Register with Bangazon</h1>
-
-        {% if registered %}
-        <strong>Thank you for registering!</strong>
-        <a href="{% url 'website:index' %}">Return to the homepage.</a><br />
-        {% else %}
-        <strong>Register here!</strong><br />
-
         <form id="user_form" method="post" action="{% url 'website:register' %}"
-                enctype="multipart/form-data">
-
+        enctype="multipart/form-data">
             {% csrf_token %}
-
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
-            {{ user_form.as_p }}
-
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register" />
+            <section class="hero is-fullheight">
+                    <div class="hero-body">
+                        <div class="container has-text-centered">
+                            <div class="column is-4 is-offset-4">
+                                <h3 class="title has-text-grey">Register</h3>
+                                <p class="subtitle has-text-grey">Please register your business</p>
+                                <div class="box">
+                                    <form id="user_form" method="post" action="{% url 'website:register' %}">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-large" type="text" name="username" placeholder="Business Name" autofocus="">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-large" type="text" name="email" placeholder="Email" autofocus="">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-large" type="password" name="password" value="" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-large" type="text" name="first_name" value="" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input is-large" type="text" name="last_name" value="" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                        <button type="submit" value="register" class="button is-block is-info is-large is-fullwidth">Login</button>
+                                    </form>
+                                </div>
+                                <p class="has-text-grey">
+                                    already a member? <a href="./login">click here</a> &nbsp;·&nbsp;
+        
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
         </form>
-        {% endif %}
     </body>
 </html>

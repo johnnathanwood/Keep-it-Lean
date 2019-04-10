@@ -1,5 +1,6 @@
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import RequestContext
@@ -15,7 +16,10 @@ from website.forms import UserForm, ProductForm
 
 def index(request):
     template_name = 'website/index.html'
-    return render(request, template_name, {})
+    if request.user.is_authenticated:
+        return render(request, template_name, {})
+    else:
+        return HttpResponseRedirect(reverse('website:login'))
 
 def test(request):
     template_name = 'website/scss.html'
@@ -80,7 +84,7 @@ def login_user(request):
         # If authentication was successful, log the user in
         if authenticated_user is not None:
             login(request=request, user=authenticated_user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('website:overview'))
 
         else:
             # Bad login details were provided. So we can't log the user in.
@@ -91,15 +95,15 @@ def login_user(request):
     return render(request, 'website/login.html', {}, context)
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
-@login_required
 def user_logout(request):
     # Since we know the user is logged in, we can now just log them out.
     logout(request)
 
     # Take the user back to the homepage. Is there a way to not hard code
     # in the URL in redirects?????
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('website:login'))
 
+@login_required(login_url='website:login')
 def overview(request):
     billing = Product.objects.filter(status_id=1)
     design = Product.objects.filter(status_id=2)
@@ -113,6 +117,7 @@ def overview(request):
     context = {"tab_overview":"is-active",'billing': billing, 'design': design,'cnc':cnc,'grinding':grinding,'painting':painting,'packaging':packaging,'shipping':shipping,'products':product, 'percentage': 100}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def billing_status(request):
     billing = Product.objects.filter(status_id=1)
     product = Product.objects.filter(status_id=1)
@@ -121,6 +126,7 @@ def billing_status(request):
     context = {'billing': billing, 'products': product,"tab_billing":"is-active","percentage": 20}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def design_status(request):
     design = Product.objects.filter(status_id=2)
     product = Product.objects.filter(status_id=2)
@@ -129,6 +135,7 @@ def design_status(request):
     context = {'design': design, 'products': product,"tab_design":"is-active", "percentage": 30}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def cnc_status(request):
     cnc = Product.objects.filter(status_id=3)
     product = Product.objects.filter(status_id=3)
@@ -137,6 +144,7 @@ def cnc_status(request):
     context = {'cnc': cnc, 'products': product, "tab_cnc":"is-active","percentage": 40}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def grinding_status(request):
     grinding = Product.objects.filter(status_id=4)
     product = Product.objects.filter(status_id=4)
@@ -145,6 +153,7 @@ def grinding_status(request):
     context = {'grinding': grinding, 'products': product, "tab_grinding":"is-active","percentage": 60}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def painting_status(request):
     painting = Product.objects.filter(status_id=5)
     product = Product.objects.filter(status_id=5)
@@ -153,6 +162,7 @@ def painting_status(request):
     context = {'painting': painting, 'products': product, "tab_painting":"is-active","percentage": 70}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def packaging_status(request):
     packaging = Product.objects.filter(status_id=6)
     product = Product.objects.filter(status_id=6)
@@ -161,6 +171,7 @@ def packaging_status(request):
     context = {'packaging': packaging, 'products': product, "tab_packaging":"is-active","percentage": 90}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def shipping_status(request):
     shipping = Product.objects.filter(status_id=7)
     product = Product.objects.filter(status_id=7)
@@ -169,6 +180,7 @@ def shipping_status(request):
     context = {'shipping': shipping, 'products': product,"tab_shipping":"is-active","percentage": 100}
     return render(request, template_name, context)
 
+@login_required(login_url='website:login')
 def process_product(request):
     if request.method == 'GET':
         product_form = ProductForm()
@@ -186,12 +198,14 @@ def process_product(request):
 
     return HttpResponseRedirect(reverse('website:overview'))
 
+@login_required(login_url='website:login')
 def product_details(request,id, status_id):
     product_details = get_object_or_404(Product, pk=id, status_id=status_id)
     context = {'product_details': product_details}
     return render(request, 'website/details.html', context)
 
 
+@login_required(login_url='website:login')
 def send_to_design(request, product_id):
     print("STATUS", product_id)
     send_to_design = get_object_or_404(Product, id=product_id)
@@ -219,8 +233,10 @@ def send_to_design(request, product_id):
     if send_to_design.status_id == 6:
        send_to_design.status_id = 7
        send_to_design.save()
+       request.session['edited_object_id'] = send_to_design.status_id
        return HttpResponseRedirect(reverse("website:shipping_status"))
 
+@login_required(login_url='website:login')
 def product_search(request):
 
     if request.method == "POST":
@@ -228,8 +244,8 @@ def product_search(request):
         search_text = request.POST["search_text"]
 
         if search_text is not "":
-            by_UPC = Product.objects.filter(UPC__contains=search_text).order_by("UPC", "description")
-            by_description = Product.objects.filter(description__contains=search_text).order_by("UPC", "description")
+            by_UPC = Product.objects.filter(UPC__contains=search_text).order_by("UPC", "description").order_by('status_id')
+            by_description = Product.objects.filter(description__contains=search_text).order_by("UPC", "description").order_by('status_id')
             results = by_UPC | by_description
             context = {
                 "results": results,
@@ -247,12 +263,14 @@ def product_search(request):
     else:
         return HttpResponseRedirect(reverse('website:overview'))
 
+@login_required(login_url='website:login')
 def product_delete_confirm(request, id, status_id):
     product_delete_confirm = get_object_or_404(Product, pk=id, status_id=status_id)
     context = {'product_delete_confirm': product_delete_confirm}
     return render(request,'website/warning.html', context)
 
 
+@login_required(login_url='website:login')
 def product_delete(request,product_id, status_id):
     product = get_object_or_404(Product, pk=product_id, status_id=status_id)
     product.delete()

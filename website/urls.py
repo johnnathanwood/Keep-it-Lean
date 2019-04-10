@@ -6,6 +6,9 @@ from . import views
 
 from .views import product_details,product_delete_confirm, product_delete
 
+from django.contrib.auth.decorators import login_required
+
+
 
 
 app_name = "website"
@@ -13,9 +16,9 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login$', views.login_user, name='login'),
     url(r'^logout$', views.user_logout, name='logout'),
-    url(r'^register$', views.register, name='register'),
+    url(r'^register$', views.register, name='register'), 
     url(r'^process$', views.process_product, name='process'),
-    url(r'^overview$', views.overview, name='overview'),
+    url(r'^overview$',views.overview, name='overview'),
     url(r'^billing$', views.billing_status, name='billing_status'),
     url(r'^design$', views.design_status, name='design_status'),
     url(r'^cnc$', views.cnc_status, name='cnc_status'),

@@ -1,19 +1,39 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="static/css/mystyles.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <title>Keep it Lean</title>
-  </head>
   <body>
-      <div id="app">
-          <div id="svg"></div>
-          <input id="input" type="text" />
-        </div>
-    {% load static %}
-    <script src="{% static '/js/barcode.js' %}"></script>
-    </body>
+    <div id="divLoadInfo">loading...</div>
+    <input id="uploadImage" type="file" accept="image/bmp,image/jpeg,image/png,image/gif" style="display:none">
+    <script src="{% static '/js/dbr-6.5.0.2.min.js' %}"></script>
+    <script src="{% static '/js/dbr-6.5.0.2.wasp' %}"></script>
+    <script>
+        dynamsoft.dbrEnv.resourcesPath = 'https://demo.dynamsoft.com/dbr_wasm/js';
+        var reader = null;
+        var iptEl = document.getElementById('uploadImage');
+        dynamsoft.dbrEnv.onAutoLoadWasmSuccess = function(){
+            reader = new dynamsoft.BarcodeReader();
+            iptEl.style.display = '';
+            document.getElementById('divLoadInfo').innerHTML="load dbr wasm success.";
+        };
+        dynamsoft.dbrEnv.onAutoLoadWasmError = function(ex){
+            document.getElementById('divLoadInfo').innerHTML="load wasm failed: "+(ex.message || ex);
+        };
+        
+        //https://www.dynamsoft.com/CustomerPortal/Portal/TrialLicense.aspx
+        dynamsoft.dbrEnv.licenseKey = "t0068NQAAAJUlQ1oDc6zPWxOAQWn7kD9EGtgZFIqK/k3ULJC5ccG9Xe/lpVOxod82bm6nXxqQXUpC1zjRXU514mWw9XLE1JM=";
+        
+        iptEl.addEventListener('change', function(){
+            reader.decodeFileInMemory(this.files[0]).then(function(results){
+                var txts = [];
+                for(var i=0;i<results.length;++i){
+                    txts.push(results[i].BarcodeText);
+                }
+                alert(txts.join("\n"));
+            }).catch(ex => {
+                alert('error:' + (ex.message || ex));
+            });
+            this.value = '';
+        });
+    </script>
+</body>
 </html>
