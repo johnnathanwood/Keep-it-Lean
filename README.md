@@ -49,8 +49,8 @@ I'm a graduate of [Nashville Software School](http://nashvillesoftwareschool.com
 Learn more about me at [johnnathanwood.com](http://www.johnnathanwood.com/)
 
 ### Stretch Goals for Future Verisons
-- Each department can register a barcode scanner to scan product into next manufacturing step 
-- Auto time trials so owner or COO can impliment changes
+- Each department can register a bar-code scanner to scan product into next manufacturing step 
+- Auto time trials so owner or COO can implement changes
 - Line managers can mark product as defect and owner will get notified 
 - Auto update emails sent to customer on where their order is at in its manufacturing process
 
