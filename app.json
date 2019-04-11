@@ -12,5 +12,10 @@
     }
   },
   "environments": {
+    "test": {
+      "scripts": {
+        "test": "python manage.py test"
+      }
+    }
   }
 }
