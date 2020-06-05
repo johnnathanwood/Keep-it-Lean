@@ -2,7 +2,7 @@ django
 gunicorn
 django-heroku
 
-import pip3
+import pip
 
 def install(package):
     pip3.main(['install', package])
