@@ -1,3 +1,16 @@
 django
 gunicorn
 django-heroku
+
+import pip3
+
+def install(package):
+    pip3.main(['install', package])
+
+# Example
+if __name__ == '__main__':
+    try:
+        import pexpect
+    except ImportError:
+        install('pexpect')
+        import pexpect
