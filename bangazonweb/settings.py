@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 from django.conf.urls.static import static
 import os
-
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'widget_tweaks',
     'website',
 ]
 
@@ -118,7 +121,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-import os
 
 MEDIA_URL = '/media/'
 
@@ -131,15 +133,3 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-
-
-
-
-
-
-
-
-
-
