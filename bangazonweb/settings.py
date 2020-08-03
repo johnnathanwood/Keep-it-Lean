@@ -12,6 +12,28 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 from django.conf.urls.static import static
 import os
 import dj_database_url
+import psycopg2.extensions
+
+DATABASES = {
+
+    'default': {
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'Keep-it-Lean',
+
+        'USER': 'admin',
+
+        'PASSWORD': '1234',
+
+        'HOST': 'localhost',
+
+        'PORT': '',
+
+    }
+
+}
+
 DATABASES['default'] = dj_database_url.config(
     conn_max_age=600, ssl_require=True)
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,7 +62,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'widget_tweaks',
     'website',
 ]
 
@@ -77,13 +98,6 @@ WSGI_APPLICATION = 'bangazonweb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Password validation
