@@ -1,4 +1,3 @@
-# Pull Request Template
 
 # Link to Jira Issue
 
@@ -6,7 +5,8 @@
 
 ## Description of Proposed Changes
 
--
+- 
+<input></input>
 
 ## Types of changes
 
@@ -34,3 +34,4 @@ You can also fill these out after creating the PR. This is simply a reminder of 
 ## Mentions @username
 
 @jahmanson @collinwhite @westonkjones
+
