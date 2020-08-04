@@ -1,4 +1,4 @@
-
+[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
 # Link to Jira Issue
 
 [MUS-issueNumber](issue_link)
