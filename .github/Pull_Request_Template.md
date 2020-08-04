@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
+[![Actions Status](https://github.com/johnnathanwood/Keep-it-Lean/workflows/Node.js Package/badge.svg)](https://github.com/johnnathanwood/keep-it-lean/actions)
 # Link to Jira Issue
 
 [MUS-issueNumber](issue_link)
