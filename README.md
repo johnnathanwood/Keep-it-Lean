@@ -1,3 +1,4 @@
+![Node.js Package](https://github.com/johnnathanwood/keep-it-lean/workflows/Node.js%20Package/badge.svg)
 # Welcome to Keep it Lean
 > A Python Django web app ERP, Enterprise Resource Planning software, for small business owners to manage and track inventory.
 
