@@ -1,6 +1,5 @@
 [![Actions Status](https://github.com/johnnathanwood/
-keep-it-Lean/workflows/Node.js+Package/badge.svg)](https://github.com/johnnathanwood/keep-it-
-lean/actions)
+keep-it-lean/workflows/Node.js+Package/badge.svg)](https://github.com/johnnathanwood/keep-it-lean/actions)
 # Link to Jira Issue
 
 [MUS-issueNumber](issue_link)
